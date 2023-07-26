@@ -1,3 +1,10 @@
+# TODO:
+
+- rename dimension to spacing
+- finish other layout props
+  - fix ts issues
+- add themeing
+
 # wolff-ui
 
 React and react-native cross platform UI library.
@@ -11,11 +18,11 @@ npm install wolff-ui
 ## Usage
 
 ```js
-import { multiply } from 'wolff-ui';
+import { multiply } from 'wolff-ui'
 
 // ...
 
-const result = await multiply(3, 7);
+const result = await multiply(3, 7)
 ```
 
 ## Contributing

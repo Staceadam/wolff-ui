@@ -32,7 +32,9 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepack": "bob build",
     "release": "release-it",
-    "example": "yarn --cwd example",
+    "example:ios": "npm run ios --prefix example",
+    "example:android": "npm run android --prefix example",
+    "example:web": "npm run web --prefix example",
     "bootstrap": "yarn example && yarn install"
   },
   "keywords": [
@@ -125,8 +127,8 @@
           "quoteProps": "consistent",
           "singleQuote": true,
           "tabWidth": 2,
-          "trailingComma": "es5",
-          "useTabs": false
+          "trailingComma": "none",
+          "semi": false
         }
       ]
     }
@@ -139,8 +141,8 @@
     "quoteProps": "consistent",
     "singleQuote": true,
     "tabWidth": 2,
-    "trailingComma": "es5",
-    "useTabs": false
+    "trailingComma": "none",
+    "semi": false
   },
   "react-native-builder-bob": {
     "source": "src",
@@ -155,5 +157,8 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }
