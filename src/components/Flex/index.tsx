@@ -14,6 +14,7 @@ import { getStyleProps } from '../../config/getStyleProps'
 
 export function Flex({ children, ...rest }: FlexProps) {
   const style = getStyleProps(rest)
+
   console.log('style', style)
 
   return (

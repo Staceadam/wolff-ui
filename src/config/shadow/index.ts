@@ -4,7 +4,7 @@ export const shadowIOSProps = {
   shadowColor: true,
   shadowOffset: true,
   shadowOpacity: true,
-  shadowRadius: tru
+  shadowRadius: true
 }
 
 export interface ShadowStylesIOSProps extends ShadowStyleIOS {}

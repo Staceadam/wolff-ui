@@ -44,13 +44,13 @@ export const viewProps = {
 }
 
 interface ShorthandProps {
-  bg: ViewStyle['backgroundColor']
+  bg?: ViewStyle['backgroundColor']
 }
 
 type Border = `${FlexStyle['borderWidth']} ${ViewStyle['borderStyle']}`
 
 interface NewProps {
-  border: Border
+  border?: Border
 }
 
-export interface ViewStyleProps extends ShorthandProps, NewProps {}
+export interface ViewStyleProps extends ViewStyle, ShorthandProps, NewProps {}

@@ -2,25 +2,46 @@ import pick from 'lodash/pick'
 
 import { flexProps } from './flex'
 import { viewProps } from './view'
+import { shadowIOSProps } from './shadow'
+import { textProps } from './text'
 
 export const getStyleProps = (rest: {}) => {
-  const joinedProps = { ...flexProps, ...viewProps }
+  const joinedProps = {
+    ...flexProps,
+    ...viewProps,
+    ...shadowIOSProps,
+    ...textProps
+  }
   const allProps = pick(rest, Object.entries(joinedProps).flat())
 
   let final = {}
   for (const [key, value] of Object.entries(allProps)) {
+    if (key === 'td') {
+      const split = value.split(' ')
+      if (split.length === 1) {
+        final.textDecorationLine = value
+      } else if (split.length === 2) {
+        const [textDecorationStyle, textDecorationLine] = split
+        final.textDecorationStyle = textDecorationStyle
+        final.textDecorationLine = textDecorationLine
+      } else {
+        const [textDecorationColor, textDecorationStyle, textDecorationLine] =
+          split
+        final.textDecorationColor = textDecorationColor
+        final.textDecorationLine = textDecorationLine
+        final.textDecorationStyle = textDecorationStyle
+      }
+    }
+    // border shorthand
     if (key === 'border') {
-      console.log('value', value)
       const [borderWidth, borderStyle, borderColor] = value.split(' ')
       final.borderWidth = borderWidth
       final.borderStyle = borderStyle
       final.borderColor = borderColor
     }
-    // if (key === 'borderRadius') {
+    // borderRadius shorthand
     if (key === 'borderRadius' && typeof value === 'string') {
       const split = value.split(' ')
-      console.log('split', split)
-      console.log('type', typeof key)
       if (split.length === 1) {
         final.borderRadius = value
       } else if (split.length === 2) {
@@ -36,8 +57,7 @@ export const getStyleProps = (rest: {}) => {
         final.borderBottomRightRadius = bottomRight
         final.borderBottomLeftRadius = bottomLeft
       }
-    }
-    if (Object.values(joinedProps).includes(key)) {
+    } else if (Object.values(joinedProps).includes(key)) {
       const shortHand = Object.keys(joinedProps).find(
         (x) => joinedProps[x] === key
       )

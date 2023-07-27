@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { Text } from 'react-native'
-import { Flex } from 'wolff-ui'
+// import { Text } from 'react-native'
+import { Flex, Text } from 'wolff-ui'
 
 export default function App() {
   return (
@@ -11,13 +11,26 @@ export default function App() {
       display="flex"
       flex={1}
       border="10 solid orange"
-      borderRadius="40 20 10 40"
+      borderRadius="40"
       justify="center"
       align="center"
       gap={20}
     >
-      <Text>Testing</Text>
-      <Text>Testing</Text>
+      <Text
+        truncate
+        tt="lowercase"
+        c="orange"
+        ta="right"
+        td="line-through"
+        fw={700}
+        fz={20}
+        fs="italic"
+      >
+        Testing a very long piece of text that will go off
+      </Text>
+      <Text fz={20}>
+        <Text>Testing nested</Text>
+      </Text>
     </Flex>
   )
 }

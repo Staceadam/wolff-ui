@@ -31,7 +31,11 @@ const shorthandProps = {
   justifyContent: 'justify',
   alignItems: 'align',
   flexWrap: 'wrap',
-  flexDirection: 'direction'
+  flexDirection: 'direction',
+  maxHeight: 'mah',
+  maxWidth: 'maw',
+  minHeight: 'mih',
+  minWidth: 'miw'
 }
 
 export const flexProps = {
@@ -54,9 +58,11 @@ export const flexProps = {
   borderRightWidth: true,
   borderStartWidth: true,
   borderTopWidth: true,
-  borderWidth: true
+  borderWidth: true,
+  overflow: true
 }
 
+//TODO: these need to be specked out better
 type ShortValues = (typeof shorthandProps)[keyof typeof shorthandProps]
 
 type ShortProps = {
