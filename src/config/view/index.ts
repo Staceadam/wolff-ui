@@ -1,39 +1,60 @@
 import type { FlexStyle } from 'react-native'
 import type { ViewStyle } from 'react-native'
+import type { Colors } from '../../theme/colors'
 
 //   shorthand boarder = borderStyle, borderWidth, borderColor
 const shorthandProps = {
   backgroundColor: 'bg'
 }
 
+interface ShorthandProps {
+  bg?: Colors
+}
+
+export const viewColorProps = {
+  borderTopColor: true,
+  borderRightColor: true,
+  borderStartColor: true,
+  borderLeftColor: true,
+  borderEndColor: true,
+  borderBlockColor: true,
+  borderBlockEndColor: true,
+  borderBlockStartColor: true,
+  borderBottomColor: true,
+  backgroundColor: true,
+  bg: true
+}
+
+export type ViewColorProps = {
+  [Key in keyof typeof viewColorProps]?: Colors
+}
+
 const newProps = {
   border: true
+}
+
+type Border = `${FlexStyle['borderWidth']} ${ViewStyle['borderStyle']}`
+
+interface NewProps {
+  border?: Border
 }
 
 export const viewProps = {
   ...shorthandProps,
   ...newProps,
+  ...viewColorProps,
   backfaceVisibility: true,
-  borderBlockColor: true,
-  borderBlockEndColor: true,
-  borderBlockStartColor: true,
-  borderBottomColor: true,
   borderBottomEndRadius: true,
   borderBottomLeftRadius: true,
   borderBottomRightRadius: true,
   borderBottomStartRadius: true,
   borderCurve: true,
-  borderEndColor: true,
   borderEndEndRadius: true,
   borderEndStartRadius: true,
-  borderLeftColor: true,
   borderRadius: true,
-  borderRightColor: true,
-  borderStartColor: true,
   borderStartEndRadius: true,
   borderStartStartRadius: true,
   borderStyle: true,
-  borderTopColor: true,
   borderTopEndRadius: true,
   borderTopLeftRadius: true,
   borderTopRightRadius: true,
@@ -43,14 +64,5 @@ export const viewProps = {
   pointerEvents: true
 }
 
-interface ShorthandProps {
-  bg?: ViewStyle['backgroundColor']
-}
-
-type Border = `${FlexStyle['borderWidth']} ${ViewStyle['borderStyle']}`
-
-interface NewProps {
-  border?: Border
-}
 
 export interface ViewStyleProps extends ViewStyle, ShorthandProps, NewProps {}

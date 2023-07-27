@@ -26,6 +26,8 @@ export default function App() {
         mt={50}
         display="flex"
         flex={1}
+        // bg="blue.200"
+        backgroundColor="blue.200"
         border="10 solid orange"
         borderRadius="40"
         align="center"

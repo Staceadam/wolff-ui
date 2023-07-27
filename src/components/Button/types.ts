@@ -1,10 +1,10 @@
-import type { ViewProps } from 'react-native'
+import type { PressableProps } from 'react-native'
 import type { ViewStyleProps } from '../../config'
 import type { ReactNode } from 'react'
 
 type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
-export interface ButtonProps extends ViewProps, ViewStyleProps {
+export interface ButtonProps extends PressableProps, ViewStyleProps {
   variant?: 'filled' | 'light' | 'outline' | 'default' | 'subtle'
   //TODO: this should be dynamic and based off of theme
   color?: string

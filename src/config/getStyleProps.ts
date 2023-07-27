@@ -1,9 +1,11 @@
 import pick from 'lodash/pick'
+import pickBy from 'lodash/pickBy'
 
 import { flexProps } from './flex'
-import { viewProps } from './view'
+import { viewColorProps, viewProps } from './view'
 import { shadowIOSProps } from './shadow'
 import { textProps } from './text'
+import { colors } from '../theme/colors'
 
 export const getStyleProps = (rest: {}) => {
   const joinedProps = {
@@ -16,6 +18,18 @@ export const getStyleProps = (rest: {}) => {
 
   let final = {}
   for (const [key, value] of Object.entries(allProps)) {
+    // map theme colors
+    if (Object.keys(viewColorProps).includes(key)) {
+      //TODO: need a helper to check shorthand props
+      const [color, number] = value.split('.')
+      final[key] = colors[color][number]
+      console.log('final after set', final)
+
+      // if (key === 'bg') {
+      //   const [color, number] = value.split('.')
+      //   final[shortHand] = colors[color][number]
+      // }
+    } 
     if (key === 'td') {
       const split = value.split(' ')
       if (split.length === 1) {
@@ -57,11 +71,18 @@ export const getStyleProps = (rest: {}) => {
         final.borderBottomRightRadius = bottomRight
         final.borderBottomLeftRadius = bottomLeft
       }
+      //Shorthand props
     } else if (Object.values(joinedProps).includes(key)) {
       const shortHand = Object.keys(joinedProps).find(
         (x) => joinedProps[x] === key
       )
-      final[shortHand] = value
+      //TODO: this needs to dynamically get any shorthand or longhand color prop
+      if (key === 'bg') {
+        const [color, number] = value.split('.')
+        final[shortHand] = colors[color][number]
+      } else {
+        final[shortHand] = value
+      }
     } else {
       final[key] = value
     }
@@ -70,6 +91,6 @@ export const getStyleProps = (rest: {}) => {
   if (rest.style) {
     return { ...final, ...rest.style }
   }
-  console.log(JSON.stringify(final, null, 2))
+  console.log('===> FINAL', JSON.stringify(final, null, 2))
   return final
 }
