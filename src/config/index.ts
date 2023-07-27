@@ -1,1 +1,2 @@
-export * from './dimension'
+export * from './flex'
+export * from './view'

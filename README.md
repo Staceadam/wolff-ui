@@ -2,7 +2,8 @@
 
 - rename dimension to spacing
 - finish other layout props
-  - fix ts issues
+
+- memoize getStyleProps and fix TS issues
 - add themeing
 
 # wolff-ui
