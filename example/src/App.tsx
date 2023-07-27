@@ -10,13 +10,13 @@ export default function App() {
       m={40}
       display="flex"
       flex={1}
-      justifyContent="center"
-      alignItems="center"
       border="10 solid orange"
-      borderRadius="40 10 20"
-      // borderTopWidth={40}
-      // borderBottomWidth={40}
+      borderRadius="40 20 10 40"
+      justify="center"
+      align="center"
+      gap={20}
     >
+      <Text>Testing</Text>
       <Text>Testing</Text>
     </Flex>
   )

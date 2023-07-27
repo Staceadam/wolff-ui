@@ -1,4 +1,12 @@
 import type { ViewProps } from 'react-native'
-import type { FlexStyleProps, ViewStyleProps } from '../../config'
+import type {
+  FlexStyleProps,
+  ViewStyleProps,
+  ShadowStylesIOSProps
+} from '../../config'
 
-export interface FlexProps extends ViewProps, FlexStyleProps, ViewStyleProps {}
+export interface FlexProps
+  extends ViewProps,
+    FlexStyleProps,
+    ViewStyleProps,
+    ShadowStylesIOSProps {}

@@ -27,24 +27,24 @@ const shorthandProps = {
   right: 'r',
   start: 's',
   top: 't',
-  width: 'w'
+  width: 'w',
+  justifyContent: 'justify',
+  alignItems: 'align',
+  flexWrap: 'wrap',
+  flexDirection: 'direction'
 }
 
 export const flexProps = {
   ...shorthandProps,
   alignContent: true,
-  alignItems: true,
   alignSelf: true,
   display: true,
   flex: true,
-  flexDirection: true,
   rowGap: true,
   gap: true,
   columnGap: true,
   flexGrow: true,
   flexShrink: true,
-  flexWrap: true,
-  justifyContent: true,
   aspectRatio: true,
   position: true,
   zIndex: true,

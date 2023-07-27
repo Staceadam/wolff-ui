@@ -53,4 +53,4 @@ interface NewProps {
   border: Border
 }
 
-export interface ViewStyle extends ShorthandProps, NewProps {}
+export interface ViewStyleProps extends ShorthandProps, NewProps {}
