@@ -2,45 +2,42 @@ import get from 'lodash/get'
 
 import { colors } from '../../theme/colors'
 
-const variantNums = {
-  filled: [700, 600, 500],
-  light: [300, 200, 100]
+// const supportedColors = [
+//   'dark',
+//   'gray',
+//   'red',
+//   'pink',
+//   'violet',
+//   'blue',
+//   'cyan',
+//   'green',
+//   'yellow',
+//   'orange'
+// ]
+const colorVariants = {
+  // TODO: need to find a way to get white
+  filled: { backgroundColor: 500, colorz: 100 },
+  light: { backgroundColor: 100, colorz: 500 },
+  disabled: { backgroundColor: 200, colorz: 300 }
 }
 
-const getBackgroundColor = (events, color, variant) => {
-  const [pressed, hovered, regular] = variantNums['light']
+const getColors = ({ events, color, variant }) => {
+  const { backgroundColor, colorz } = colorVariants[variant]
+  const finalColor = colors[color][colorz]
 
+  let finalBackground = colors[color][backgroundColor]
   if (events.isPressed) {
-    return get(colors, [color, pressed])
+    finalBackground += 200
   } else if (events.isHovered) {
-    return get(colors, [color, hovered])
-  } else {
-    return get(colors, [color, regular])
+    finalBackground += 100
+  }
+  return {
+    backgroundColor: finalBackground,
+    colorFinal: finalColor
   }
 }
 
-const colors = [
-  'dark',
-  'gray',
-  'red',
-  'pink',
-  'violet',
-  'blue',
-  'cyan',
-  'green',
-  'yellow',
-  'orange'
-]
-
-const fontColors = {
-  filled: {}
-}
-
-const getColor = (color, variant) => {
-  return colors.white
-}
-
-const radiusSize = {
+const radiusVariants = {
   xs: 2,
   sm: 4,
   md: 8,
@@ -48,178 +45,43 @@ const radiusSize = {
   xl: 20
 }
 
-const getRadius = (radius) => {
+const getRadius = ({ radius }) => {
   if (typeof radius === 'number') {
-    return radius
+    return { borderRadius: radius }
   }
-  return get(radiusSize, radius)
+  return { borderRadius: radiusVariants[radius] }
 }
 
-// const constants = {
-//   color: getColor(color, variant),
-//   fontWeight: 600
-// }
-
-export var styles = (events, radius, color, variant) => {
-  return {
-    filled: {
-      xs: {
-        pressableStyle: {
-          backgroundColor: getBackgroundColor(events, color, variant),
-          borderRadius: getRadius(radius),
-          height: 32,
-          display: 'flex',
-          justifyContent: 'center',
-          paddingHorizontal: 18
-        },
-        textStyle: {
-          color: getColor(color, variant),
-          fontWeight: 600,
-          fontSize: 12
-        }
-      },
-      sm: {
-        pressableStyle: {
-          backgroundColor: getBackgroundColor(events, color, variant),
-          borderRadius: getRadius(radius),
-          height: 38,
-          display: 'flex',
-          justifyContent: 'center',
-          paddingHorizontal: 20
-        },
-        textStyle: {
-          fontWeight: 600,
-          fontSize: 14,
-          color: getColor(color, variant)
-        }
-      },
-      md: {
-        pressableStyle: {
-          backgroundColor: getBackgroundColor(events, color, variant),
-          borderRadius: getRadius(radius),
-          height: 44,
-          display: 'flex',
-          justifyContent: 'center',
-          paddingHorizontal: 22
-        },
-        textStyle: {
-          fontWeight: 600,
-          fontSize: 16,
-          color: getColor(color, variant)
-        }
-      },
-      lg: {
-        pressableStyle: {
-          backgroundColor: getBackgroundColor(events, color, variant),
-          borderRadius: getRadius(radius),
-          height: 50,
-          display: 'flex',
-          justifyContent: 'center',
-          paddingHorizontal: 24
-        },
-        textStyle: {
-          fontWeight: 600,
-          fontSize: 18,
-          color: getColor(color, variant)
-        }
-      },
-      xl: {
-        pressableStyle: {
-          backgroundColor: getBackgroundColor(events, color, variant),
-          borderRadius: getRadius(radius),
-          height: 56,
-          display: 'flex',
-          justifyContent: 'center',
-          paddingHorizontal: 26
-        },
-        textStyle: {
-          fontWeight: 600,
-          fontSize: 20,
-          color: getColor(color, variant)
-        }
-      }
-    },
-    light: {
-      xs: {
-        pressableStyle: {
-          backgroundColor: getBackgroundColor(events, color, variant),
-          borderRadius: getRadius(radius),
-          height: 32,
-          display: 'flex',
-          justifyContent: 'center',
-          paddingHorizontal: 18
-        },
-        textStyle: {
-          color: getColor(color, variant),
-          fontWeight: 600,
-          fontSize: 12
-        }
-      },
-      sm: {
-        pressableStyle: {
-          backgroundColor: getBackgroundColor(events, color, variant),
-          borderRadius: getRadius(radius),
-          height: 38,
-          display: 'flex',
-          justifyContent: 'center',
-          paddingHorizontal: 20
-        },
-        textStyle: {
-          fontWeight: 600,
-          fontSize: 14,
-          color: getColor(color, variant)
-        }
-      },
-      md: {
-        pressableStyle: {
-          backgroundColor: getBackgroundColor(events, color, variant),
-          borderRadius: getRadius(radius),
-          height: 44,
-          display: 'flex',
-          justifyContent: 'center',
-          paddingHorizontal: 22
-        },
-        textStyle: {
-          fontWeight: 600,
-          fontSize: 16,
-          color: getColor(color, variant)
-        }
-      },
-      lg: {
-        pressableStyle: {
-          backgroundColor: getBackgroundColor(events, color, variant),
-          borderRadius: getRadius(radius),
-          height: 50,
-          display: 'flex',
-          justifyContent: 'center',
-          paddingHorizontal: 24
-        },
-        textStyle: {
-          fontWeight: 600,
-          fontSize: 18,
-          color: getColor(color, variant)
-        }
-      },
-      xl: {
-        pressableStyle: {
-          backgroundColor: getBackgroundColor(events, color, variant),
-          borderRadius: getRadius(radius),
-          height: 56,
-          display: 'flex',
-          justifyContent: 'center',
-          paddingHorizontal: 26
-        },
-        textStyle: {
-          fontWeight: 600,
-          fontSize: 20,
-          color: getColor(color, variant)
-        }
-      }
-    },
-    outline: {},
-    default: {},
-    subtle: {}
+const sizeVariants = {
+  xs: {
+    height: 32,
+    paddingHorizontal: 18,
+    fontSize: 12
+  },
+  sm: {
+    height: 38,
+    paddingHorizontal: 20,
+    fontSize: 14
+  },
+  md: {
+    height: 44,
+    paddingHorizontal: 22,
+    fontSize: 16
+  },
+  lg: {
+    height: 50,
+    paddingHorizontal: 24,
+    fontSize: 18
+  },
+  xl: {
+    height: 56,
+    paddingHorizontal: 26,
+    fontSize: 20
   }
+}
+
+const getSizes = ({ size }) => {
+  return sizeVariants[size]
 }
 
 export const getButtonStyles = ({
@@ -230,5 +92,22 @@ export const getButtonStyles = ({
   color = 'blue',
   events
 }) => {
-  return get(styles(events, radius, color, variant), [variant, size])
+  const { backgroundColor, colorFinal } = getColors({ events, color, variant })
+  const { height, paddingHorizontal, fontSize } = getSizes({ size })
+  const { borderRadius } = getRadius({ radius })
+  return {
+    pressableStyle: {
+      display: 'flex',
+      justifyContent: 'center',
+      height,
+      paddingHorizontal,
+      backgroundColor,
+      borderRadius
+    },
+    textStyle: {
+      fontSize,
+      fontWeight: 600,
+      color: colorFinal
+    }
+  }
 }

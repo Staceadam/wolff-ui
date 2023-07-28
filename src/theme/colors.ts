@@ -24,7 +24,7 @@ export interface ColorHues {
 const colors = {
   contrastThreshold: 7,
   // Singleton colors
-  white: '#FFFFFF',
+  white: {},
   black: '#000000',
   lightText: '#FFFFFF',
   darkText: '#000000',
