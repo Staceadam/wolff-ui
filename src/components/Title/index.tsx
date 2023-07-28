@@ -43,5 +43,9 @@ export function Title({ children, order, size = 'h3', ...rest }: TitleProps) {
   const style = getStyleProps(rest)
   const final = { ...style, ...sizeOptions[size] }
 
-  return <Text style={final}>{children}</Text>
+  return (
+    <Text {...rest} style={final}>
+      {children}
+    </Text>
+  )
 }

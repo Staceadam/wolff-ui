@@ -1,15 +1,38 @@
 import React from 'react'
 import { Pressable } from 'react-native'
-import { Flex } from '../Flex'
 
 import type { ButtonGroupProps, ButtonProps } from './types'
 import { getStyleProps } from '../../config/getStyleProps'
+import { colors } from '../../theme/colors'
+import { useEvents } from '../Pressable/useEvents'
+import { Text } from '../Text'
+import { getButtonStyles } from './buttonStyles'
 
 //TODO: https://mantine.dev/core/button/#usage
-function Button({ children, ...rest }: ButtonProps) {
+function Button({
+  children,
+  size,
+  color,
+  variant,
+  radius,
+  ...rest
+}: ButtonProps) {
   const style = getStyleProps(rest)
+  const { events, ...setters } = useEvents()
 
-  return <Pressable style={style}>{children}</Pressable>
+  const { pressableStyle, textStyle } = getButtonStyles({
+    size,
+    color,
+    variant,
+    radius,
+    events
+  })
+
+  return (
+    <Pressable {...setters} style={pressableStyle}>
+      <Text style={textStyle}>{children}</Text>
+    </Pressable>
+  )
 }
 
 //TODO: https://mantine.dev/core/button/#buttongroup

@@ -1,11 +1,6 @@
 import type { FlexStyle, DimensionValue } from 'react-native'
 
-const shorthandProps = {
-  flexBasis: 'fb',
-  height: 'h',
-  bottom: 'b',
-  end: 'e',
-  left: 'l',
+export const shortHandSpacingProps = {
   margin: 'm',
   marginTop: 'mt',
   marginRight: 'mr',
@@ -24,9 +19,18 @@ const shorthandProps = {
   paddingVertical: 'py',
   paddingStart: 'ps',
   paddingEnd: 'pe',
+  left: 'l',
   right: 'r',
-  start: 's',
   top: 't',
+  bottom: 'b'
+}
+
+const shorthandProps = {
+  ...shortHandSpacingProps,
+  flexBasis: 'fb',
+  height: 'h',
+  end: 'e',
+  start: 's',
   width: 'w',
   justifyContent: 'justify',
   alignItems: 'align',
@@ -44,8 +48,6 @@ export const flexProps = {
   alignSelf: true,
   display: true,
   flex: true,
-  rowGap: true,
-  gap: true,
   columnGap: true,
   flexGrow: true,
   flexShrink: true,

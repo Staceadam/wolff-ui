@@ -12,6 +12,7 @@ interface ShorthandProps {
 }
 
 export const viewColorProps = {
+  ...shorthandProps,
   borderTopColor: true,
   borderRightColor: true,
   borderStartColor: true,
@@ -20,9 +21,7 @@ export const viewColorProps = {
   borderBlockColor: true,
   borderBlockEndColor: true,
   borderBlockStartColor: true,
-  borderBottomColor: true,
-  backgroundColor: true,
-  bg: true
+  borderBottomColor: true
 }
 
 export type ViewColorProps = {
@@ -30,7 +29,7 @@ export type ViewColorProps = {
 }
 
 const newProps = {
-  border: true
+  border: ['borderWidth', 'borderStyle', 'borderColor']
 }
 
 type Border = `${FlexStyle['borderWidth']} ${ViewStyle['borderStyle']}`
@@ -63,6 +62,5 @@ export const viewProps = {
   elevation: true,
   pointerEvents: true
 }
-
 
 export interface ViewStyleProps extends ViewStyle, ShorthandProps, NewProps {}

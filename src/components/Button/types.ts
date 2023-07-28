@@ -5,6 +5,7 @@ import type { ReactNode } from 'react'
 type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export interface ButtonProps extends PressableProps, ViewStyleProps {
+  children: string
   variant?: 'filled' | 'light' | 'outline' | 'default' | 'subtle'
   //TODO: this should be dynamic and based off of theme
   color?: string
