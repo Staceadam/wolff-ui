@@ -9,6 +9,10 @@ import { Text } from '../Text'
 import { getButtonStyles } from './buttonStyles'
 
 //TODO: https://mantine.dev/core/button/#usage
+// 1. icon(left/right/center)
+// 2. loading indicator over icon
+// 3. full width
+// 4. button group
 function Button({ children, size, compact, color, variant, radius, disabled, onPress, ...rest }: ButtonProps) {
   const style = getStyleProps(rest)
   const { events, ...setters } = useEvents()

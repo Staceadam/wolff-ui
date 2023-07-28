@@ -42,6 +42,8 @@ const getColors = ({ events, colorString, variant }) => {
 
   if (events?.isPressed) {
     backgroundColor = colors[colorString][backgroundColorCode + 200]
+    //TODO:: need to update hover codes based on variant
+    // hover is broken on web...
   } else if (events?.isHovered) {
     backgroundColor = colors[colorString][backgroundColorCode + 100]
   }
