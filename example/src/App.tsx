@@ -38,13 +38,13 @@ export default function App() {
         <Pressable bg="orange.500" onPress={() => Alert.alert('pressed')}>
           {({ isPressed, isHovered, isFocused }) => (
             <Flex>
-              <Text>
-                {JSON.stringify({ isPressed, isHovered, isFocused }, null, 2)}
-              </Text>
+              <Text>{JSON.stringify({ isPressed, isHovered, isFocused }, null, 2)}</Text>
             </Flex>
           )}
         </Pressable>
-        <Button>testing</Button>
+        <Button color="red" compact onPress={() => Alert.alert('pressed')}>
+          testing
+        </Button>
         {/* <Text
           truncate
           tt="uppercase"

@@ -24,12 +24,13 @@ export interface ColorHues {
 const colors = {
   contrastThreshold: 7,
   // Singleton colors
-  white: {},
+  white: '#FFFFFF',
   black: '#000000',
   lightText: '#FFFFFF',
   darkText: '#000000',
   // Primary colors
   rose: {
+    0: '#FFFFFF',
     50: '#fff1f2',
     100: '#ffe4e6',
     200: '#fecdd3',
@@ -42,6 +43,7 @@ const colors = {
     900: '#881337'
   },
   pink: {
+    0: '#FFFFFF',
     50: '#fdf2f8',
     100: '#fce7f3',
     200: '#fbcfe8',
@@ -54,6 +56,7 @@ const colors = {
     900: '#831843'
   },
   fuchsia: {
+    0: '#FFFFFF',
     50: '#fdf4ff',
     100: '#fae8ff',
     200: '#f5d0fe',
@@ -66,6 +69,7 @@ const colors = {
     900: '#701a75'
   },
   purple: {
+    0: '#FFFFFF',
     50: '#faf5ff',
     100: '#f3e8ff',
     200: '#e9d5ff',
@@ -78,6 +82,7 @@ const colors = {
     900: '#581c87'
   },
   violet: {
+    0: '#FFFFFF',
     50: '#f5f3ff',
     100: '#ede9fe',
     200: '#ddd6fe',
@@ -90,6 +95,7 @@ const colors = {
     900: '#4c1d95'
   },
   indigo: {
+    0: '#FFFFFF',
     50: '#eef2ff',
     100: '#e0e7ff',
     200: '#c7d2fe',
@@ -102,6 +108,7 @@ const colors = {
     900: '#312e81'
   },
   blue: {
+    0: '#FFFFFF',
     50: '#eff6ff',
     100: '#dbeafe',
     200: '#bfdbfe',
@@ -114,6 +121,7 @@ const colors = {
     900: '#1e3a8a'
   },
   lightBlue: {
+    0: '#FFFFFF',
     50: '#f0f9ff',
     100: '#e0f2fe',
     200: '#bae6fd',
@@ -126,6 +134,7 @@ const colors = {
     900: '#0c4a6e'
   },
   darkBlue: {
+    0: '#FFFFFF',
     50: '#dbf4ff',
     100: '#addbff',
     200: '#7cc2ff',
@@ -138,6 +147,7 @@ const colors = {
     900: '#000e21'
   },
   cyan: {
+    0: '#FFFFFF',
     50: '#ecfeff',
     100: '#cffafe',
     200: '#a5f3fc',
@@ -150,6 +160,7 @@ const colors = {
     900: '#164e63'
   },
   teal: {
+    0: '#FFFFFF',
     50: '#f0fdfa',
     100: '#ccfbf1',
     200: '#99f6e4',
@@ -162,6 +173,7 @@ const colors = {
     900: '#134e4a'
   },
   emerald: {
+    0: '#FFFFFF',
     50: '#ecfdf5',
     100: '#d1fae5',
     200: '#a7f3d0',
@@ -174,6 +186,7 @@ const colors = {
     900: '#064e3b'
   },
   green: {
+    0: '#FFFFFF',
     50: '#f0fdf4',
     100: '#dcfce7',
     200: '#bbf7d0',
@@ -186,6 +199,7 @@ const colors = {
     900: '#14532d'
   },
   lime: {
+    0: '#FFFFFF',
     50: '#f7fee7',
     100: '#ecfccb',
     200: '#d9f99d',
@@ -198,6 +212,7 @@ const colors = {
     900: '#365314'
   },
   yellow: {
+    0: '#FFFFFF',
     50: '#fefce8',
     100: '#fef9c3',
     200: '#fef08a',
@@ -210,6 +225,7 @@ const colors = {
     900: '#713f12'
   },
   amber: {
+    0: '#FFFFFF',
     50: '#fffbeb',
     100: '#fef3c7',
     200: '#fde68a',
@@ -222,6 +238,7 @@ const colors = {
     900: '#78350f'
   },
   orange: {
+    0: '#FFFFFF',
     50: '#fff7ed',
     100: '#ffedd5',
     200: '#fed7aa',
@@ -234,6 +251,7 @@ const colors = {
     900: '#7c2d12'
   },
   red: {
+    0: '#FFFFFF',
     50: '#fef2f2',
     100: '#fee2e2',
     200: '#fecaca',
@@ -246,6 +264,7 @@ const colors = {
     900: '#7f1d1d'
   },
   warmGray: {
+    0: '#FFFFFF',
     50: '#fafaf9',
     100: '#f5f5f4',
     200: '#e7e5e4',
@@ -258,6 +277,7 @@ const colors = {
     900: '#1c1917'
   },
   trueGray: {
+    0: '#FFFFFF',
     50: '#fafafa',
     100: '#f5f5f5',
     200: '#e5e5e5',
@@ -270,6 +290,7 @@ const colors = {
     900: '#171717'
   },
   gray: {
+    0: '#FFFFFF',
     50: '#fafafa',
     100: '#f4f4f5',
     200: '#e4e4e7',
@@ -282,6 +303,7 @@ const colors = {
     900: '#18181b'
   },
   coolGray: {
+    0: '#FFFFFF',
     50: '#f9fafb',
     100: '#f3f4f6',
     200: '#e5e7eb',
@@ -294,6 +316,7 @@ const colors = {
     900: '#111827'
   },
   blueGray: {
+    0: '#FFFFFF',
     50: '#f8fafc',
     100: '#f1f5f9',
     200: '#e2e8f0',
@@ -306,6 +329,7 @@ const colors = {
     900: '#0f172a'
   },
   dark: {
+    0: '#FFFFFF',
     50: '#18181b',
     100: '#27272a',
     200: '#3f3f46',
@@ -318,6 +342,7 @@ const colors = {
     900: '#fafafa'
   },
   text: {
+    0: '#FFFFFF',
     50: '#fafafa',
     100: '#f5f5f5',
     200: '#e5e5e5',

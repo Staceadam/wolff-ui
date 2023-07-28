@@ -1,39 +1,54 @@
-import get from 'lodash/get'
-
 import { colors } from '../../theme/colors'
 
-// const supportedColors = [
-//   'dark',
-//   'gray',
-//   'red',
-//   'pink',
-//   'violet',
-//   'blue',
-//   'cyan',
-//   'green',
-//   'yellow',
-//   'orange'
-// ]
 const colorVariants = {
-  // TODO: need to find a way to get white
-  filled: { backgroundColor: 500, colorz: 100 },
-  light: { backgroundColor: 100, colorz: 500 },
-  disabled: { backgroundColor: 200, colorz: 300 }
+  filled: {
+    backgroundColorCode: 500,
+    colorCode: 0,
+    borderColorCode: undefined
+  },
+  light: {
+    backgroundColorCode: 50,
+    colorCode: 500,
+    borderColorCode: undefined
+  },
+  outline: { backgroundColorCode: 0, colorCode: 500, borderColorCode: 500 },
+  default: {
+    backgroundColorCode: 0,
+    colorCode: 900,
+    borderColorCode: 300
+  },
+  subtle: {
+    backgroundColorCode: 0,
+    colorCode: 500,
+    borderColorCode: undefined
+  },
+  disabled: {
+    backgroundColorCode: 0,
+    colorCode: 900,
+    borderColorCode: 300
+  }
 }
 
-const getColors = ({ events, color, variant }) => {
-  const { backgroundColor, colorz } = colorVariants[variant]
-  const finalColor = colors[color][colorz]
+const grayVariants = ['default', 'disabled']
 
-  let finalBackground = colors[color][backgroundColor]
-  if (events.isPressed) {
-    finalBackground += 200
-  } else if (events.isHovered) {
-    finalBackground += 100
+const getColors = ({ events, colorString, variant }) => {
+  if (grayVariants.includes(variant)) {
+    colorString = 'gray'
+  }
+  let { backgroundColorCode, colorCode, borderColorCode } = colorVariants[variant]
+  const color = colors[colorString][colorCode]
+  let backgroundColor = colors[colorString][backgroundColorCode]
+  let borderColor = borderColorCode ? colors[colorString][borderColorCode] : undefined
+
+  if (events?.isPressed) {
+    backgroundColor = colors[colorString][backgroundColorCode + 200]
+  } else if (events?.isHovered) {
+    backgroundColor = colors[colorString][backgroundColorCode + 100]
   }
   return {
-    backgroundColor: finalBackground,
-    colorFinal: finalColor
+    backgroundColor,
+    color,
+    borderColor
   }
 }
 
@@ -80,34 +95,60 @@ const sizeVariants = {
   }
 }
 
-const getSizes = ({ size }) => {
-  return sizeVariants[size]
+const getSizes = ({ size, compact }) => {
+  const sizes = sizeVariants[size]
+
+  if (compact) {
+    sizes.height -= 10
+    sizes.paddingHorizontal -= 10
+  }
+
+  return sizes
 }
 
+const borderedVariants = ['outline', 'default', 'disabled']
+
 export const getButtonStyles = ({
-  // size = 'sm',
   size = 'sm',
   variant = 'filled',
   radius = 'sm',
-  color = 'blue',
-  events
+  color: colorString = 'blue',
+  events,
+  disabled,
+  compact
 }) => {
-  const { backgroundColor, colorFinal } = getColors({ events, color, variant })
-  const { height, paddingHorizontal, fontSize } = getSizes({ size })
+  if (disabled) {
+    variant = 'disabled'
+  }
+  const { backgroundColor, color, borderColor } = getColors({
+    events,
+    colorString,
+    variant
+  })
+  const { height, paddingHorizontal, fontSize } = getSizes({ size, compact })
   const { borderRadius } = getRadius({ radius })
+
+  const pressableStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    height,
+    paddingHorizontal,
+    backgroundColor,
+    borderRadius,
+    borderColor
+  }
+
+  if (borderedVariants.includes(variant) || disabled) {
+    pressableStyle.borderWidth = 0.85
+  }
+
+  const textStyle = {
+    fontSize,
+    fontWeight: 600,
+    color
+  }
   return {
-    pressableStyle: {
-      display: 'flex',
-      justifyContent: 'center',
-      height,
-      paddingHorizontal,
-      backgroundColor,
-      borderRadius
-    },
-    textStyle: {
-      fontSize,
-      fontWeight: 600,
-      color: colorFinal
-    }
+    pressableStyle,
+    textStyle
   }
 }

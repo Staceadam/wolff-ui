@@ -9,14 +9,7 @@ import { Text } from '../Text'
 import { getButtonStyles } from './buttonStyles'
 
 //TODO: https://mantine.dev/core/button/#usage
-function Button({
-  children,
-  size,
-  color,
-  variant,
-  radius,
-  ...rest
-}: ButtonProps) {
+function Button({ children, size, compact, color, variant, radius, disabled, onPress, ...rest }: ButtonProps) {
   const style = getStyleProps(rest)
   const { events, ...setters } = useEvents()
 
@@ -25,11 +18,13 @@ function Button({
     color,
     variant,
     radius,
-    events
+    events,
+    disabled,
+    compact
   })
 
   return (
-    <Pressable {...setters} style={pressableStyle}>
+    <Pressable {...setters} disabled={disabled} onPress={onPress} style={{ ...pressableStyle, ...style }}>
       <Text style={textStyle}>{children}</Text>
     </Pressable>
   )

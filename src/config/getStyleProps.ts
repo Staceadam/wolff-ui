@@ -20,9 +20,7 @@ const formatProp = (styleProp, stylePropReal) => {
   if (includes(styleProp, '.')) {
     return formatColor(styleProp)
     // the property exists in the spacing theme
-  } else if (
-    includes(Object.entries(shortHandSpacingProps).flat(), stylePropReal)
-  ) {
+  } else if (includes(Object.entries(shortHandSpacingProps).flat(), stylePropReal)) {
     return sizes[styleProp]
   } else if (includes(styleProp, ' ')) {
     // return formatLonghand(styleProp)
@@ -64,8 +62,6 @@ const newVersion = (styleObject) => {
       }
     }
   }
-
-  console.log('final', final)
 
   return final
 }
