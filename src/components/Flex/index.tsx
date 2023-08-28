@@ -1,25 +1,24 @@
-import { View } from 'react-native'
-import React from 'react'
-import type { FlexProps } from './types'
-import { getStyleProps } from '../../config/getStyleProps'
+import * as React from 'react'
+import { useRestyle, spacing, layout, composeRestyleFunctions, createVariant } from '@shopify/restyle'
+import type { SpacingProps, LayoutProps, VariantProps } from '@shopify/restyle'
 
-//TODO: should be a wrapping function that handles all the refs and prop injection
-// then returns a Component
-// const StyledFlex = makeStyledComponent(View)
-/*
-1. map over types and inject them as props
-2. include a style overlap
+import type { Theme } from '../../../example/src/theme'
+import { Box } from '../Box'
 
-*/
+type RestyleProps = SpacingProps<Theme> & LayoutProps<Theme> & VariantProps<Theme, 'flexVariants'>
 
-export function Flex({ children, ...rest }: FlexProps) {
-  const style = getStyleProps(rest)
+const restyleFunctions = composeRestyleFunctions<Theme, RestyleProps>([
+  spacing,
+  layout,
+  createVariant({ themeKey: 'flexVariants' })
+])
 
-  // console.log('style', style)
+type Props = RestyleProps & {
+  children: React.ReactNode
+}
 
-  return (
-    <View {...rest} style={style}>
-      {children}
-    </View>
-  )
+export const Flex = ({ children, ...rest }: Props) => {
+  const props = useRestyle(restyleFunctions, rest)
+
+  return <Box {...props}>{children}</Box>
 }

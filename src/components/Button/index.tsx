@@ -1,42 +1,41 @@
-import React from 'react'
-import { Pressable } from 'react-native'
+import * as React from 'react'
+import { TouchableOpacity, type TouchableOpacityProps } from 'react-native'
+import { useRestyle, spacing, composeRestyleFunctions, createVariant, border, backgroundColor } from '@shopify/restyle'
+import type { SpacingProps, VariantProps, BorderProps, BackgroundColorProps } from '@shopify/restyle'
 
-import type { ButtonGroupProps, ButtonProps } from './types'
-import { getStyleProps } from '../../config/getStyleProps'
-import { colors } from '../../theme/colors'
-import { useEvents } from '../Pressable/useEvents'
+import type { Theme } from '../../../example/src/theme'
 import { Text } from '../Text'
-import { getButtonStyles } from './buttonStyles'
 
-//TODO: https://mantine.dev/core/button/#usage
-// 1. icon(left/right/center)
-// 2. loading indicator over icon
-// 3. full width
-// 4. button group
-function Button({ children, size, compact, color, variant, radius, disabled, onPress, ...rest }: ButtonProps) {
-  const style = getStyleProps(rest)
-  const { events, ...setters } = useEvents()
+type RestyleProps = SpacingProps<Theme> &
+  BorderProps<Theme> &
+  BackgroundColorProps<Theme> &
+  VariantProps<Theme, 'buttonVariants'>
 
-  const { pressableStyle, textStyle } = getButtonStyles({
-    size,
-    color,
-    variant,
-    radius,
-    events,
-    disabled,
-    compact
-  })
+const restyleFunctions = composeRestyleFunctions<Theme, RestyleProps>([
+  spacing,
+  border,
+  backgroundColor,
+  createVariant({ themeKey: 'buttonVariants' })
+])
+
+type Props = RestyleProps &
+  TouchableOpacityProps & {
+    children: React.ReactNode
+    disabled?: boolean
+    uppercase?: boolean
+    compact?: boolean
+    //TODO: these should use the t-shirt sizing from theme
+    radius?: 's' | 'm' | 'l' | 'xl'
+    size?: 's' | 'm' | 'l' | 'xl'
+  }
+
+export const Button = ({ children, onPress, ...rest }: Props) => {
+  const props = useRestyle(restyleFunctions, rest)
 
   return (
-    <Pressable {...setters} disabled={disabled} onPress={onPress} style={{ ...pressableStyle, ...style }}>
-      <Text style={textStyle}>{children}</Text>
-    </Pressable>
+    <TouchableOpacity onPress={onPress} {...props}>
+      <Text>{children}</Text>
+      <Text>{JSON.stringify(props, null, 2)}</Text>
+    </TouchableOpacity>
   )
 }
-
-//TODO: https://mantine.dev/core/button/#buttongroup
-// Button.Group = ({ buttonBorderWidth, orientation }: ButtonGroupProps) => {
-//   return <Flex></Flex>
-// }
-
-export { Button }
